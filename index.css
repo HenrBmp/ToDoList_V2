@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Outfit:wght@100..900&display=swap');
+@import url("./stylesheets/utility-class.css");
+
+:root {
+    /* COLOR */
+        /* NEUTRAL */
+            --neutral-light: #f5f5f5;
+            --neutral-dark-1: #171717;
+            --neutral-dark-2: #0a0a0a;
+        /* PRIMARY */
+            --primary-light: #69bd5c;
+            --primary-mid: #457a3c;
+            --primary-dark: #324e2d;
+
+    /* PROPERTIES */
+        --b-radius: 1rem;
+
+        --ease-in-out: cubic-bezier(.5,0,.5,1);
+        --elastic-bezier: cubic-bezier(1.00, -0.65, 0.00, 1.5);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
