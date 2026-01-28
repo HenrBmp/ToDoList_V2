@@ -1,7 +1,15 @@
-.body-font {
-    font-family: Lexend, sans-serif;
+.outfit {
+    font-family: Outfit, sans-serif;
 }
 
-.head-font {
-    font-family: Outfit, sans-serif;
+.light-font {
+    color: var(--neutral-light);
+}
+
+.dark-font {
+    color: var(--neutral-dark-2);
+}
+
+.colored-font {
+    color: var(--primary-light);
 }

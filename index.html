@@ -2,14 +2,57 @@
 <html lang="pt-br">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <link rel="stylesheet" href="./index.css">
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <title>To do list 2.0</title>
+    <script src="./index.js"></script>
+    <title>To Do List 2.0</title>
 </head>
 <body>
     <div id="root">
-        <section id="new-task"></section>
-        <section id="tasks"></section>
+        <h3 id="saudacao" class="light-font m1rem">
+            Olá <span id="user" class="colored-font">Placeholder</span>!
+        </h3>
+        <section id="new-task" class="light-font">
+            <form action="">
+                <h1>Placeholder</h1>
+                <input
+                    placeholder="Insira a descrição da tarefa"
+                    type="text"
+                    name="description-entry"
+                    id="description-entry"
+                >
+                    
+                <label for="validity-entry">Data de validade:</label>
+                <input type="datetime-local" name="validity-entry" id="validity-entry">
+    
+                <button id="clear-btn">Limpar</button>
+                <button id="create-btn">Criar</button>
+            </form>
+        </section>
+        <section id="tasks" class="dark-font">
+            <!-- Exemplo de task -->    
+            <div class="task done overdue" id="epoch">
+                <span id="description">Descricao</span>
+
+                <!-- svg's provisorios -->
+                <div id="buttons">
+                    <svg id="edit-icon" class="svg-btn"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" heigth="24px" width="24px">
+                        <path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/>
+                    </svg>
+                    <svg id="delete-icon" class="svg-btn"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" height="24px" width="24px">
+                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <footer id="footer" class="light-font">
+            <p>&copy;Henrique Rodrigues</p>
+            <p id="reset-name">Clique para redefinir seu nome.</p>
+            <p id="reset-tasks">Clique para redefinir suas tarefas.</p>
+        </footer>
     </div>
 </body>
 </html>

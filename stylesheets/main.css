@@ -1,0 +1,35 @@
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#new-task,
+#tasks,
+.task {
+    border-radius: var(--b-radius);
+}
+
+#new-task,
+#tasks {
+    padding: 1.25rem;
+}
+
+#new-task {
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+}
+
+#tasks {
+    background: var(--neutral-light);
+}
+
+.task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background: var(--neutral-dark);
+}
