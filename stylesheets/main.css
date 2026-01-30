@@ -7,29 +7,140 @@ footer {
 }
 
 #new-task,
-#tasks,
-.task {
-    border-radius: var(--b-radius);
-}
-
-#new-task,
 #tasks {
-    padding: 1.25rem;
+    border-radius: var(--b-radius);
 }
 
 #new-task {
     background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+    padding: 1rem;
+}
+
+#new-task form {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    flex-wrap: wrap;
 }
 
 #tasks {
     background: var(--neutral-light);
+    padding: 1rem;
 }
 
-.task {
+.task-item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    background: var(--neutral-dark-2);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    position: relative;
+}
 
-    background: var(--neutral-dark);
+.buttons-tasks {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.svg-btn {
+    fill: currentColor;
+    min-width: 24px; min-height: 24px;
+}
+
+/* STATUS DAS TAREFAS */
+.done {
+    opacity: .85;
+}
+
+.done > .task-description,
+.done > .task-validity {
+    text-decoration: line-through;
+}
+
+.overdue {
+    padding-left: 2.5rem;
+}
+
+.overdue::before {
+    content: "!";
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    position: absolute;
+    left: 0;
+    background: red;
+    width: 2rem;
+    height: 100%;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+/* ENTRADAS DE INFO */
+#description-entry {
+    border-radius: .5rem;
+    outline: none;
+    border: none;
+    padding: .2rem .5rem;
+    width: 200px;
+}
+
+#clear-btn,
+#create-btn {
+    border-radius: .5rem;
+    padding: .2rem;
+    border: black 2px solid;
+}
+
+#clear-btn,
+#create-btn {
+    transition: all 75ms var(--ease-in-out);
+}
+
+
+#clear-btn {
+    background: rgb(255, 78, 78);
+}
+
+#create-btn {
+    background: rgb(0, 171, 0);
+}
+
+#clear-btn:hover,
+#create-btn:hover {
+    filter: brightness(1.3);
+}
+
+#clear-btn:active,
+#create-btn:active {
+    transform: scale(.95);
+}
+
+#validity-entry {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--neutral-light);
+}
+
+/* BOTÕES DAS TASKS */
+.svg-btn {
+    transition: .3s var(--elastic-bezier);
+}
+
+.edit-icon:hover {
+    fill: rgb(0, 171, 0);
+    scale: 1.4;
+    rotate: 10deg;
+}
+
+.delete-icon:hover {
+    fill: rgb(255, 78, 78);
+    rotate: 180deg;
+    scale: 1.25;
 }

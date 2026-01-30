@@ -14,7 +14,7 @@
             --primary-dark: #324e2d;
 
     /* PROPERTIES */
-        --b-radius: 1rem;
+        --b-radius: 1.5rem;
 
         --ease-in-out: cubic-bezier(.5,0,.5,1);
         --elastic-bezier: cubic-bezier(1.00, -0.65, 0.00, 1.5);
@@ -28,7 +28,7 @@
 }
 
 #root {
-    background: var(--neutral-dark-1);
+    background: var(--neutral-dark-2);
     min-height: 100dvh;
     padding: 1rem 2rem;
 
