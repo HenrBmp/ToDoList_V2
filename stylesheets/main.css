@@ -51,6 +51,11 @@ footer {
     min-width: 24px; min-height: 24px;
 }
 
+#reset-name,
+#reset-tasks {
+    cursor: pointer;
+}
+
 /* STATUS DAS TAREFAS */
 .done {
     opacity: .85;

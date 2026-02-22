@@ -12,13 +12,26 @@ if (!localStorage.getItem("username")) {
         () => {
             const NAME_INPUT = document.getElementById("pop-up-txt-input");
             const NAME = NAME_INPUT.value;
-
             const USERNAME_PLACE = document.getElementById("user");
             USERNAME_PLACE.innerHTML = NAME;
             localStorage.setItem("username", NAME);
         }
     );
+} else {
+    const USERNAME = localStorage.getItem("username")
+    const USERNAME_PLACE = document.getElementById("user");
+    USERNAME_PLACE.innerHTML = USERNAME;
 }
+
 if (!localStorage.getItem("tasklist")) {
     localStorage.setItem("tasklist", "[]");
 }
+
+const RESET_NAME_BTN = document.getElementById("reset-name");
+RESET_NAME_BTN.addEventListener(
+    "click",
+    function ResetName(){
+        localStorage.clear("username");
+        location.reload();
+    }
+);
