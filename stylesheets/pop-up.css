@@ -12,7 +12,7 @@
 }
 
 #pop-up {
-    width: min-content; height: min-content;
+    width: fit-content; height: fit-content;
     padding: 1.5rem 2rem;
     background: var(--neutral-dark-1);
     border-radius: var(--b-radius);
@@ -27,7 +27,7 @@
     outline: none;
     border: none;
     color: var(--neutral-light);
-    width: min-content;
+    width: fit-content;
 }
 
 #sendAction-btn,
