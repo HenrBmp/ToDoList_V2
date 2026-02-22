@@ -4,11 +4,18 @@ if (!localStorage.getItem("username")) {
         "Insira um nome.",
         "Pronto",
         async () => {
-            // gerar input de texto
-            return [ /* input aqui */];
+            const NAME_INPUT = document.createElement("input");
+            NAME_INPUT.type = "text";
+            NAME_INPUT.id = "pop-up-txt-input";
+            return [ NAME_INPUT ];
         },
         () => {
-            // capturar valor do input e mandar para o span
+            const NAME_INPUT = document.getElementById("pop-up-txt-input");
+            const NAME = NAME_INPUT.value;
+
+            const USERNAME_PLACE = document.getElementById("user");
+            USERNAME_PLACE.innerHTML = NAME;
+            localStorage.setItem("username", NAME);
         }
     );
 }
