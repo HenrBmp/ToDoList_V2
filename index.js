@@ -1,9 +1,10 @@
 import { PopUp } from "./scripts/pop-up.js";
+import { addTask } from "./scripts/add-task.js";
 if (!localStorage.getItem("username")) {
     PopUp(
         "Insira um nome.",
         "Pronto",
-        async () => {
+        () => {
             const NAME_INPUT = document.createElement("input");
             NAME_INPUT.type = "text";
             NAME_INPUT.id = "pop-up-txt-input";
@@ -22,11 +23,9 @@ if (!localStorage.getItem("username")) {
     const USERNAME_PLACE = document.getElementById("user");
     USERNAME_PLACE.innerHTML = USERNAME;
 }
-
 if (!localStorage.getItem("tasklist")) {
     localStorage.setItem("tasklist", "[]");
 }
-
 const RESET_NAME_BTN = document.getElementById("reset-name");
 RESET_NAME_BTN.addEventListener(
     "click",
@@ -35,3 +34,39 @@ RESET_NAME_BTN.addEventListener(
         location.reload();
     }
 );
+const RESET_TASKS_BTN = document.getElementById("reset-tasks");
+RESET_TASKS_BTN.addEventListener(
+    "click",
+    function ResetTasks(){
+        localStorage.clear("tasklist");
+        location.reload();
+    }
+);
+const CREATE_TASK_BTN = document.getElementById("create-btn");
+CREATE_TASK_BTN.addEventListener(
+    "click",
+    function ExtractTaksInfo(){
+        event.preventDefault();
+        const DESC_INPUT = document.getElementById("description-entry");
+        const DATE_INPUT = document.getElementById("validity-entry");
+        if (!DESC_INPUT.value) {
+            PopUp("Descrição inválida.");
+            return
+        } else if (!DESC_INPUT.value) {
+            PopUp("Data inválida.");
+            return;
+        } else if (!DESC_INPUT.value && !DESC_INPUT.value) {
+            PopUp("Descrição e data inválidas.");
+            return;
+        }
+        const DATE_OBJECT = DATE_INPUT.valueAsDate;
+        const NOW = new Date;
+        const TASK_OBJECT = {
+            "description": DESC_INPUT.value,
+            "epoch": DATE_OBJECT.getTime(),
+            "isDone": false,
+            "isOverdue": DATE_OBJECT.getTime() < NOW.getTime() ? false : true
+        };
+        addTask(TASK_OBJECT);
+    }
+)
