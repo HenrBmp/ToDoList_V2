@@ -4,6 +4,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 8px;
 }
 
 #new-task,
@@ -26,6 +27,9 @@ footer {
 #tasks {
     background: var(--neutral-light);
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
 }
 
 .task-item {
@@ -40,15 +44,12 @@ footer {
     position: relative;
 }
 
+.task-description { flex-grow: 2; }
+
 .buttons-tasks {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-}
-
-.svg-btn {
-    fill: currentColor;
-    min-width: 24px; min-height: 24px;
 }
 
 #reset-name,
@@ -135,6 +136,12 @@ footer {
 /* BOTÕES DAS TASKS */
 .svg-btn {
     transition: .3s var(--elastic-bezier);
+    fill: currentColor;
+    min-width: 24px; height: 24px;
+}
+
+.svg-btn:hover {
+    cursor: pointer;
 }
 
 .edit-icon:hover {

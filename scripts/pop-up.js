@@ -1,9 +1,9 @@
-async function PopUp(msg, sendLabel, inputCallback, sendActionCallback) {
+export async function PopUp(msg, sendLabel, inputCallback, sendActionCallback, isConfirmation) {
     const BLUR_DIV = document.createElement("div");
     BLUR_DIV.id = "blur-box";
     document.getElementById("root").appendChild(BLUR_DIV);
 
-    const POP_UP = document.createElement("div");
+    const POP_UP = document.createElement("form");
     POP_UP.id = "pop-up";
     BLUR_DIV.appendChild(POP_UP);
 
@@ -15,19 +15,20 @@ async function PopUp(msg, sendLabel, inputCallback, sendActionCallback) {
     const inputs = await inputCallback();
     inputs.forEach(input => POP_UP.appendChild(input));
 
-    if (sendLabel) {
-        const ACTION_BUTTON = document.createElement("button");
-        ACTION_BUTTON.id = "sendAction-btn";
-        ACTION_BUTTON.innerHTML = sendLabel;
-        ACTION_BUTTON.addEventListener(
-            "click",
-            () => {
-                sendActionCallback();
-                document.getElementById("blur-box").remove();
-            }
-        );
-        POP_UP.appendChild(ACTION_BUTTON);
+    const ACTION_BUTTON = document.createElement("button");
+    ACTION_BUTTON.id = "sendAction-btn";
+    ACTION_BUTTON.innerHTML = sendLabel;
+    ACTION_BUTTON.type = "submit"
+    ACTION_BUTTON.addEventListener(
+        "click",
+        () => {
+            sendActionCallback();
+            document.getElementById("blur-box").remove();
+        }
+    );
+    POP_UP.appendChild(ACTION_BUTTON);
 
+    if (!isConfirmation) {
         const CANCEL_BUTTON = document.createElement("button");
         CANCEL_BUTTON.id = "cancel-btn";
         CANCEL_BUTTON.innerHTML = "Cancelar";
@@ -36,17 +37,5 @@ async function PopUp(msg, sendLabel, inputCallback, sendActionCallback) {
             () => document.getElementById("blur-box").remove()
         );
         POP_UP.appendChild(CANCEL_BUTTON);
-    } else {
-        const CONFIRM_BUTTON = document.createElement("button");
-        CONFIRM_BUTTON.id = "confirm-btn";
-        CONFIRM_BUTTON.innerHTML = "Ok";
-        CONFIRM_BUTTON.addEventListener(
-            "click",
-            () => document.getElementById("blur-box").remove()
-        );
-        POP_UP.appendChild(CONFIRM_BUTTON);
-    }
-
+    };
 };
-
-export { PopUp };
