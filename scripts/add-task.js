@@ -1,5 +1,5 @@
 import { PopUp } from "./pop-up.js";
-export async    function addTask(){
+export async function addTask(){
     event.preventDefault();
     const DESC_INPUT = document.getElementById("description-entry");
     const DATE_INPUT = document.getElementById("validity-entry");
@@ -13,7 +13,7 @@ export async    function addTask(){
         PopUp("Descrição e data inválidas.");
         return;
     }
-    const DATE_OBJECT = DATE_INPUT.valueAsDate;
+    const DATE_OBJECT = new Date(DATE_INPUT.value);
     const NOW = new Date;
     const THIS_TASK_OBJECT = {
         "description": DESC_INPUT.value,
@@ -26,8 +26,7 @@ export async    function addTask(){
     const task_already_exists = tasklist.some(
         function CheckRepeatedTask (target_task) {
             THIS_TASK_OBJECT.description === target_task.description &&
-            THIS_TASK_OBJECT.epoch === target_task.epoch &&
-            THIS_TASK_OBJECT.subOrder === target_task.subOrder
+            THIS_TASK_OBJECT.epoch === target_task.epoch
         }
     );
     if (task_already_exists) {
