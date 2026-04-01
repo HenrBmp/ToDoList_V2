@@ -1,5 +1,5 @@
-import { createSVG } from "./create-svg.js";
-export async function loadTasks(tasksJSON) {
+import createSVG from "./create-svg.js";
+export default async function loadTasks(tasksJSON) {
     document.querySelector("#tasks").innerHTML = '';
     tasksJSON.forEach(async task => {
         const task_div = document.createElement("div");

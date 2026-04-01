@@ -1,6 +1,6 @@
-import { PopUp } from "./scripts/pop-up.js";
-import { addTask } from "./scripts/add-task.js";
-import { loadTasks } from "./scripts/load-task.js";   
+import PopUp from "./scripts/pop-up.js";
+import addTask from "./scripts/add-task.js";
+import loadTasks from "./scripts/load-task.js";   
 if (!localStorage.getItem("username")) {
     PopUp(
         "Insira um nome.",
@@ -72,4 +72,4 @@ async function CreateTask () {
 CREATE_TASK_BTN.addEventListener(
     "click",
     CreateTask
-)
+);

@@ -1,5 +1,5 @@
-import { PopUp } from "./pop-up.js";
-export async function addTask(){
+import PopUp from "./pop-up.js";
+export default async function addTask(){
     event.preventDefault();
     const DESC_INPUT = document.getElementById("description-entry");
     const DATE_INPUT = document.getElementById("validity-entry");
