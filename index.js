@@ -72,4 +72,4 @@ async function CreateTask () {
 CREATE_TASK_BTN.addEventListener(
     "click",
     CreateTask
-)
+);
