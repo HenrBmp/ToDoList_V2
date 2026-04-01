@@ -1,4 +1,4 @@
-export async function PopUp(msg, sendLabel, inputCallback, sendActionCallback, isConfirmation) {
+export default async function PopUp(msg, sendLabel, inputCallback, sendActionCallback, isConfirmation) {
     const BLUR_DIV = document.createElement("div");
     BLUR_DIV.id = "blur-box";
     document.getElementById("root").appendChild(BLUR_DIV);
