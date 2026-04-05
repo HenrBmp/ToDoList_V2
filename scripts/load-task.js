@@ -33,8 +33,11 @@ export default async function loadTasks(tasksJSON) {
         });
         localStorage.setItem("tasklist", JSON.stringify(switch_isdone));
     }
-    function deleteTask() {
-        // TODO: DELETAR TAREFAS
+    function deleteTask(taskForDel) {
+        const tasklist = JSON.parse(localStorage.getItem("tasklist"));
+        const filtered = tasklist.filter(el => !isSomeTask(el, taskForDel));
+        document.getElementById(`${taskForDel.epoch}-${taskForDel.subOrder}`).remove();
+        localStorage.setItem("tasklist", JSON.stringify(filtered));
     }
     function editTask(taskForEdit) {
         const originalDescription =
@@ -125,7 +128,7 @@ export default async function loadTasks(tasksJSON) {
             "m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z",
         );
         delete_button.classList.add("delete-icon");
-        delete_button.addEventListener("click", () => deleteTask());
+        delete_button.addEventListener("click", () => deleteTask(task));
         [edit_button, delete_button].forEach(element => buttons_div.appendChild(element));
         [done_button, description, validity, buttons_div].forEach(element =>
             task_div.appendChild(element),
