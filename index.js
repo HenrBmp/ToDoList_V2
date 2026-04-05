@@ -1,6 +1,7 @@
 import PopUp from "./scripts/pop-up.js";
 import addTask from "./scripts/add-task.js";
-import loadTasks from "./scripts/load-task.js";   
+import loadTasks from "./scripts/load-task.js";
+
 if (!localStorage.getItem("username")) {
     PopUp(
         "Insira um nome.",
@@ -9,7 +10,7 @@ if (!localStorage.getItem("username")) {
             const NAME_INPUT = document.createElement("input");
             NAME_INPUT.type = "text";
             NAME_INPUT.id = "pop-up-txt-input";
-            return [ NAME_INPUT ];
+            return [NAME_INPUT];
         },
         () => {
             const NAME_INPUT = document.getElementById("pop-up-txt-input");
@@ -18,10 +19,10 @@ if (!localStorage.getItem("username")) {
             USERNAME_PLACE.innerHTML = NAME;
             localStorage.setItem("username", NAME);
         },
-        false
+        false,
     );
 } else {
-    const USERNAME = localStorage.getItem("username")
+    const USERNAME = localStorage.getItem("username");
     const USERNAME_PLACE = document.getElementById("user");
     USERNAME_PLACE.innerHTML = USERNAME;
 }
@@ -29,7 +30,6 @@ if (!localStorage.getItem("tasklist")) {
     localStorage.setItem("tasklist", "[]");
 }
 loadTasks(JSON.parse(localStorage.getItem("tasklist")));
-const RESET_NAME_BTN = document.getElementById("reset-name");
 function ResetName() {
     PopUp(
         "Insira um nome.",
@@ -38,7 +38,7 @@ function ResetName() {
             const NAME_INPUT = document.createElement("input");
             NAME_INPUT.type = "text";
             NAME_INPUT.id = "pop-up-txt-input";
-            return [ NAME_INPUT ];
+            return [NAME_INPUT];
         },
         () => {
             const NAME_INPUT = document.getElementById("pop-up-txt-input");
@@ -47,29 +47,20 @@ function ResetName() {
             USERNAME_PLACE.innerHTML = NAME;
             localStorage.setItem("username", NAME);
         },
-        false
-    )
-};
-RESET_NAME_BTN.addEventListener(
-    "click",
-    ResetName
-);
-const RESET_TASKS_BTN = document.getElementById("reset-tasks");
+        false,
+    );
+}
+document.getElementById("reset-name").addEventListener("click", ResetName);
 function ResetTasks() {
     localStorage.setItem("tasklist", "[]");
-    document.querySelector("#tasks").innerHTML = '';
-};
-RESET_TASKS_BTN.addEventListener(
-    "click",
-    ResetTasks
-);
-const CREATE_TASK_BTN = document.getElementById("create-btn");
-async function CreateTask () {
+    document.querySelector("#tasks").innerHTML = "";
+}
+document.getElementById("reset-tasks").addEventListener("click", ResetTasks);
+async function CreateTask() {
     event.preventDefault();
-    const tasklist = await addTask();
+    const description = document.getElementById("description-entry").value;
+    const date = document.getElementById("validity-entry").value;
+    const tasklist = await addTask(description, Date.parse(date));
     loadTasks(tasklist);
-};
-CREATE_TASK_BTN.addEventListener(
-    "click",
-    CreateTask
-);
+}
+document.getElementById("create-btn").addEventListener("click", CreateTask);

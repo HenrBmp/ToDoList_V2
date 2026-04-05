@@ -1,48 +1,63 @@
 import PopUp from "./pop-up.js";
-export default async function addTask(){
-    event.preventDefault();
-    const DESC_INPUT = document.getElementById("description-entry");
-    const DATE_INPUT = document.getElementById("validity-entry");
-    if (!DESC_INPUT.value) {
-        PopUp("Descrição inválida.");
+export default async function addTask(description, dateAsNumber, isDone = false) {
+    if (!description) {
+        PopUp(
+            "Descrição inválida.",
+            "Ok",
+            () => {},
+            () => {},
+            true,
+        );
         return;
-    } else if (!DESC_INPUT.value) {
-        PopUp("Data inválida.");
+    } else if (!dateAsNumber) {
+        PopUp(
+            "Data inválida.",
+            "Ok",
+            () => {},
+            () => {},
+            true,
+        );
         return;
-    } else if (!DESC_INPUT.value && !DESC_INPUT.value) {
-        PopUp("Descrição e data inválidas.");
+    } else if (!description && !dateAsNumber) {
+        PopUp(
+            "Descrição e data inválidas.",
+            "Ok",
+            () => {},
+            () => {},
+            true,
+        );
         return;
     }
-    const DATE_OBJECT = new Date(DATE_INPUT.value);
-    const NOW = new Date;
     const THIS_TASK_OBJECT = {
-        "description": DESC_INPUT.value,
-        "epoch": DATE_OBJECT.getTime(),
-        "subOrder": 0,
-        "isDone": false,
-        "isOverdue": DATE_OBJECT.getTime() < NOW.getTime() ? true : false
+        description: description,
+        epoch: dateAsNumber,
+        subOrder: 0,
+        isDone: isDone,
+        isOverdue: dateAsNumber < Date.now() ? true : false,
     };
     const tasklist = JSON.parse(localStorage.getItem("tasklist"));
-    const task_already_exists = tasklist.some(
-        function CheckRepeatedTask (target_task) {
-            THIS_TASK_OBJECT.description === target_task.description &&
-            THIS_TASK_OBJECT.epoch === target_task.epoch
-        }
-    );
+    const task_already_exists = tasklist.some(function CheckRepeatedTask(target_task) {
+        THIS_TASK_OBJECT.description === target_task.description &&
+            THIS_TASK_OBJECT.epoch === target_task.epoch;
+    });
     if (task_already_exists) {
-        PopUp("Esta tarefa já existe.");
+        PopUp(
+            "Esta tarefa já existe.",
+            "Ok",
+            () => {},
+            () => {},
+            true,
+        );
         return;
-    };
-    tasklist.forEach(
-        function CheckOrder (target) {
-            if (
-                target.epoch === THIS_TASK_OBJECT.epoch &&
-                target.description === THIS_TASK_OBJECT.description
-            ) {
-                THIS_TASK_OBJECT.subOrder = target.subOrder + 1;
-            }
+    }
+    tasklist.forEach(function CheckOrder(target) {
+        if (
+            target.epoch === THIS_TASK_OBJECT.epoch &&
+            target.description === THIS_TASK_OBJECT.description
+        ) {
+            THIS_TASK_OBJECT.subOrder = target.subOrder + 1;
         }
-    );
+    });
     tasklist.push(THIS_TASK_OBJECT);
     tasklist.sort((taskA, taskB) => taskA.epoch - taskB.epoch);
     localStorage.setItem("tasklist", JSON.stringify(tasklist));

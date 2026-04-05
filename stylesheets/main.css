@@ -53,10 +53,11 @@ footer {
     flex-grow: 2;
 }
 
-div.buttons-tasks {
+div.buttons-task {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 24px;
+    gap: 8px;
 }
 
 #reset-name,
