@@ -108,7 +108,6 @@ export default async function loadTasks(tasksJSON) {
         description.innerHTML = task.description;
         const validity = document.createElement("span");
         validity.classList.add("task-validity");
-        const thisTaskDate = new Date(task.epoch);
         const dmyFormater = new Intl.DateTimeFormat("pt-BR", {
             day: "2-digit",
             month: "2-digit",
@@ -116,7 +115,7 @@ export default async function loadTasks(tasksJSON) {
             hour: "2-digit",
             minute: "2-digit",
         });
-        validity.innerHTML = dmyFormater.format(thisTaskDate);
+        validity.innerHTML = dmyFormater.format(task.epoch);
         const buttons_div = document.createElement("div");
         buttons_div.classList.add("buttons-task");
         const edit_button = await createSVG(

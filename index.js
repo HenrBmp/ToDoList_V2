@@ -61,6 +61,6 @@ async function CreateTask() {
     const description = document.getElementById("description-entry").value;
     const date = document.getElementById("validity-entry").value;
     const tasklist = await addTask(description, Date.parse(date));
-    loadTasks(tasklist);
+    if (tasklist) loadTasks(tasklist);
 }
 document.getElementById("create-btn").addEventListener("click", CreateTask);
